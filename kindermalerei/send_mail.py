@@ -14,12 +14,19 @@ from secrets import *
 PROGRAM_DESCRIPTION = "Send emails with pictures drawn by children."
 SUBJECT = "Bild vom Kind"
 
-def send_mail(to, file):
+def send_mail(to_mail, file, username, password):
+    """
+    
+    :param str to_mail: The email address to send the file to
+    :param bytes file: the content of the file to send
+    :param str username: the username of a gmail account
+    :param str password: the password to the username
+    """
 
     # Create the container (outer) email message.
     msg = MIMEMultipart()
     msg['Subject'] = SUBJECT
-    msg['From'] = from_mail = FROM
+    msg['From'] = username
     msg['To'] = to_mail = to
     msg.preamble = PROGRAM_DESCRIPTION
 
@@ -57,8 +64,6 @@ def send_mail(to, file):
     #   https://www.nixtutor.com/linux/send-mail-through-gmail-with-python/
     s = smtplib.SMTP('smtp.gmail.com:587')
     s.starttls()
-    username = from_mail
-    password = PASSWORD
     s.login(username, password)
     s.sendmail(from_mail, to_mail, msg.as_string())
     s.quit()
