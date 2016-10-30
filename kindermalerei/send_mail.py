@@ -13,7 +13,7 @@ from html import escape as html_escape
 PROGRAM_DESCRIPTION = "Send emails with pictures drawn by children."
 SUBJECT = "Bild vom Kind"
 
-def send_mail(to_mail, file, username, password):
+def send_mail(to_mail, file, username, password, host):
     """
     
     :param str to_mail: The email address to send the file to
@@ -25,11 +25,11 @@ def send_mail(to_mail, file, username, password):
     # Create the container (outer) email message.
     msg = MIMEMultipart()
     msg['Subject'] = SUBJECT
-    msg['From'] = username
+    msg['From'] = from_mail = username
     msg['To'] = to_mail
     msg.preamble = PROGRAM_DESCRIPTION
 
-    removelink = 'https://kindermalerei.quelltext.eu/nixmehr/' + to_mail
+    removelink = 'https://{}/nixmehr/{}'.format(host, to_mail)
 
     # alternative texts, see
     #    https://docs.python.org/2/library/email-examples.html

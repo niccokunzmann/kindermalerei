@@ -11,13 +11,14 @@ APPDATA = os.path.join(APPDATA_ROOT, APPLICATION)
 HERE = os.path.dirname(__file__) or os.getcwd()
 ZIP_PATH = "/" + APPLICATION + ".zip"
 
+@get('/send_to/<emails>')
 @post('/send_to/<emails>')
 def send_mail_to(emails):
     """Send the posted content as email."""
     assert all(32 <= ord(letter) <= 127 for letter in emails), emails
     print(emails)
-    print(dict(request.headers))
-    send_mail(emails, request.body.read(), USERNAME, PASSWORD)
+    host = request.headers["Host"]
+    send_mail(emails, request.body.read(), USERNAME, PASSWORD, host)
 
 @get('/nixmehr/<email>')
 def remove_subscription(email):
