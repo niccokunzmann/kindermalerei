@@ -13,6 +13,7 @@ ZIP_PATH = "/" + APPLICATION + ".zip"
 
 @post('/send_to/<emails>')
 def send_mail_to(emails):
+    """Send the posted content as email."""
     assert all(32 <= ord(letter) <= 127 for letter in emails), emails
     print(emails)
     print(dict(request.headers))
@@ -20,14 +21,17 @@ def send_mail_to(emails):
 
 @get('/nixmehr/<email>')
 def remove_subscription(email):
+    """Never ever send emails to this email address again."""
     print(email)
 
 @get('/source')
 def get_source_redirect():
+    """Download the source of this application."""
     redirect(ZIP_PATH)
 
 @get(ZIP_PATH)
 def get_source():
+    """Download the source of this application."""
     # from http://stackoverflow.com/questions/458436/adding-folders-to-a-zip-file-using-python#6511788
     path = (shutil.make_archive("/tmp/" + APPLICATION, "zip", HERE))
     return static_file(path, root="/")
