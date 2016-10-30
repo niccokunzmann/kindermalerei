@@ -1,15 +1,19 @@
 # see https://hub.docker.com/_/python/
-FROM python:3-alpine
+FROM python:3.5.0-slim
 
-COPY kindermalerei .
+# Prepare the environment
+RUN pip install --no-cache --upgrade pip
+RUN mkdir /app
+COPY kindermalerei/ /app/
 
-EXPOSE 8080
+# install the environment
+RUN cd /app && \
+    pip install --no-cache -r requirements.txt
 
+# Prepare execution
+EXPOSE 80
 VOLUME /var/kindermalerei
+WORKDIR /app/
 
-WORKDIR kindermalerei
-
-RUN pip install --no-cache -r requirements.txt
-
-CMD ["python3", "-m", "kindermalerei"]
+CMD ["python3", "-m", "server.py"]
 
