@@ -15,5 +15,5 @@ EXPOSE 80
 VOLUME /var/kindermalerei
 WORKDIR /app/
 
-CMD ["python3", "-m", "server.py"]
+ENTRYPOINT ["python3", "server.py"]
 

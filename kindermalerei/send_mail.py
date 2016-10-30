@@ -9,7 +9,6 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from urllib.parse import urlencode
 from html import escape as html_escape
-from secrets import *
 
 PROGRAM_DESCRIPTION = "Send emails with pictures drawn by children."
 SUBJECT = "Bild vom Kind"

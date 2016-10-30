@@ -17,7 +17,7 @@ def send_mail_to(emails):
 
 @get('/nixmehr/<email>')
 def remove_subscription(email):
-    
+    print(email)
 
 
 if __name__ == "__main__":
