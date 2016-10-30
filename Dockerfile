@@ -5,6 +5,7 @@ FROM python:3.5.0-slim
 RUN pip install --no-cache --upgrade pip
 RUN mkdir /app
 COPY kindermalerei/ /app/
+COPY LICENSE /app/
 
 # install the environment
 RUN cd /app && \
@@ -14,6 +15,7 @@ RUN cd /app && \
 EXPOSE 80
 VOLUME /var/kindermalerei
 WORKDIR /app/
+ENV PYTHONUNBUFFERED 0
 
 ENTRYPOINT ["python3", "server.py"]
 
