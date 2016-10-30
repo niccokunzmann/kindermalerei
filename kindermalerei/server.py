@@ -21,7 +21,9 @@ def send_mail_to(emails):
 
 @get('/nixmehr/<email>')
 def remove_subscription(email):
-    """Never ever send emails to this email address again."""
+    """Never ever send emails to this email address again.
+
+    The database is APPDATA"""
     print(email)
 
 @get('/source')
