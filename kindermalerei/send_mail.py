@@ -26,7 +26,7 @@ def send_mail(to_mail, file, username, password):
     msg = MIMEMultipart()
     msg['Subject'] = SUBJECT
     msg['From'] = username
-    msg['To'] = to_mail = to
+    msg['To'] = to_mail
     msg.preamble = PROGRAM_DESCRIPTION
 
     removelink = 'https://kindermalerei.quelltext.eu/nixmehr/' + to_mail
